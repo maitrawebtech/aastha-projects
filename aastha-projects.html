@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aastha ProjectS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A2533;
+    --steel: #707A8A;
+    --gold: #C5A059;
+    --gold-dark: #A3813E;
+    --gold-light: #D9BA7A;
+    --ice: #F4F7F9;
+    --charcoal: #2D2D2D;
+    --white: #FFFFFF;
+    --navy-90: rgba(26,37,51,0.9);
+    --navy-40: rgba(26,37,51,0.4);
+    --steel-20: rgba(112,122,138,0.2);
+    --gold-grad: linear-gradient(135deg, #C5A059 0%, #A3813E 100%);
+    --nav-h: 80px;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--ice); color: var(--charcoal); overflow-x: hidden; }
+
+  /* ─── TYPOGRAPHY ─────────────────────────────── */
+  .display { font-family: 'Cormorant Garamond', serif; }
+
+  /* ─── NAVBAR ─────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    background: transparent;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    transition: background 0.5s, box-shadow 0.5s;
+  }
+  nav.scrolled {
+    background: var(--navy);
+    box-shadow: 0 2px 40px rgba(0,0,0,0.4);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--gold-grad);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 700; color: var(--navy);
+    box-shadow: 0 0 0 2px rgba(197,160,89,0.3), 0 4px 16px rgba(197,160,89,0.25);
+  }
+  .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.5px; }
+  .nav-logo-sub { font-size: 10px; font-weight: 400; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    padding: 10px 24px; background: var(--gold-grad);
+    color: var(--navy); font-size: 13px; font-weight: 600;
+    text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(197,160,89,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(197,160,89,0.45); }
+
+  /* ─── HERO ───────────────────────────────────── */
+  #hero {
+    position: relative; min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(197,160,89,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(112,122,138,0.12) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(197,160,89,0.8) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(197,160,89,0.8) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .hero-particles { position: absolute; inset: 0; pointer-events: none; }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    padding-top: var(--nav-h);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(197,160,89,0.4);
+    padding: 6px 16px; border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse-dot 2s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+  .hero-badge span { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 76px);
+    font-weight: 700; line-height: 1.05;
+    color: var(--white);
+  }
+  .hero-title em { font-style: normal; color: var(--gold); }
+  .hero-title .line { display: block; overflow: hidden; }
+  .hero-title .line span { display: block; animation: slide-up 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+  .hero-title .line:nth-child(1) span { animation-delay: 0.1s; }
+  .hero-title .line:nth-child(2) span { animation-delay: 0.25s; }
+  .hero-title .line:nth-child(3) span { animation-delay: 0.4s; }
+  @keyframes slide-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .hero-sub {
+    margin-top: 24px; font-size: 17px; line-height: 1.75;
+    color: rgba(255,255,255,0.6); max-width: 480px;
+    animation: fade-in 1.2s 0.7s both;
+  }
+  .hero-actions {
+    margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fade-in 1s 0.9s both;
+  }
+  @keyframes fade-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .btn-primary {
+    padding: 15px 36px; background: var(--gold-grad);
+    color: var(--navy); font-size: 14px; font-weight: 600;
+    text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px;
+    border-radius: 2px; box-shadow: 0 8px 32px rgba(197,160,89,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(197,160,89,0.55); }
+  .btn-secondary {
+    padding: 15px 36px;
+    color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500;
+    text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px;
+    border: 1px solid rgba(255,255,255,0.25); border-radius: 2px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    margin-top: 56px; display: flex; gap: 40px;
+    animation: fade-in 1s 1.1s both;
+  }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 700; color: var(--gold); line-height: 1;
+  }
+  .hero-stat-label { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+  /* Hero Right — 3D Card Stack */
+  .hero-right {
+    position: relative; height: 520px;
+    animation: fade-in 1.2s 0.5s both;
+  }
+  .hero-card {
+    position: absolute; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(197,160,89,0.15);
+  }
+  .hero-card-main {
+    width: 340px; height: 420px; right: 0; top: 40px;
+    background: linear-gradient(160deg, #1e2e42 0%, #0d1620 100%);
+    animation: float 6s ease-in-out infinite;
+  }
+  .hero-card-back1 {
+    width: 300px; height: 380px; right: 30px; top: 0;
+    background: linear-gradient(160deg, #263447 0%, #151f2d 100%);
+    animation: float 6s 0.8s ease-in-out infinite;
+    opacity: 0.7;
+  }
+  .hero-card-back2 {
+    width: 260px; height: 340px; right: 55px; top: -30px;
+    background: linear-gradient(160deg, #2d3d52 0%, #1c2836 100%);
+    animation: float 6s 1.6s ease-in-out infinite;
+    opacity: 0.4;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  .hero-card-inner { padding: 28px; height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .hero-card-shine {
+    position: absolute; top: 0; left: -100%;
+    width: 80%; height: 100%;
+    background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+    animation: shine 4s 2s ease-in-out infinite;
+  }
+  @keyframes shine { 0%{left:-100%} 30%,100%{left:150%} }
+  .hc-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; background: rgba(197,160,89,0.15);
+    border: 1px solid rgba(197,160,89,0.3); border-radius: 100px;
+    font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: 1px; text-transform: uppercase;
+    width: fit-content;
+  }
+  .hc-icon { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+  .hc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 700; color: var(--white);
+    line-height: 1.2; margin-top: 16px;
+  }
+  .hc-divider { height: 1px; background: linear-gradient(90deg, var(--gold), transparent); margin: 20px 0; }
+  .hc-spec { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .hc-spec:last-of-type { border-bottom: none; }
+  .hc-spec-label { font-size: 12px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.8px; }
+  .hc-spec-value { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.85); }
+  .hc-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
+  .hc-status { font-size: 11px; color: #5DCCB0; letter-spacing: 1px; text-transform: uppercase; }
+  .hc-status::before { content: '●'; margin-right: 6px; animation: pulse-dot 2s ease-in-out infinite; }
+  .hc-number { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 700; color: rgba(197,160,89,0.15); line-height: 1; }
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fade-in 1s 1.5s both;
+  }
+  .scroll-hint span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(197,160,89,0.5), transparent); animation: scroll-line 2s ease-in-out infinite; }
+  @keyframes scroll-line { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+  /* ─── SECTION COMMONS ───────────────────────── */
+  section { padding: 120px 5%; }
+  .max-w { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .section-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700; line-height: 1.1;
+    color: var(--navy);
+  }
+  .section-title.light { color: var(--white); }
+
+  /* ─── MARQUEE STRIP ─────────────────────────── */
+  .marquee-strip {
+    background: var(--navy);
+    padding: 18px 0; overflow: hidden;
+    border-top: 1px solid rgba(197,160,89,0.15);
+    border-bottom: 1px solid rgba(197,160,89,0.15);
+  }
+  .marquee-track {
+    display: flex; gap: 0;
+    animation: marquee 22s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    display: inline-flex; align-items: center; gap: 24px;
+    padding: 0 40px;
+    font-size: 12px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+  }
+  .marquee-sep { color: var(--gold); font-size: 16px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ─── SERVICES ───────────────────────────────── */
+  #services { background: var(--ice); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
+  .service-card {
+    position: relative; overflow: hidden;
+    background: var(--white);
+    padding: 48px 40px;
+    cursor: pointer;
+    transition: background 0.4s;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold-grad);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { background: var(--navy); }
+  .service-card:hover .sc-num { color: rgba(197,160,89,0.2); }
+  .service-card:hover .sc-icon-wrap { background: rgba(197,160,89,0.15); border-color: rgba(197,160,89,0.3); }
+  .service-card:hover .sc-icon { filter: brightness(1.5); }
+  .service-card:hover .sc-title { color: var(--white); }
+  .service-card:hover .sc-desc { color: rgba(255,255,255,0.55); }
+  .service-card:hover .sc-link { color: var(--gold); }
+  .sc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px; font-weight: 700; line-height: 1;
+    color: rgba(26,37,51,0.06);
+    position: absolute; top: 20px; right: 28px;
+    transition: color 0.4s;
+  }
+  .sc-icon-wrap {
+    width: 56px; height: 56px; border-radius: 12px;
+    background: rgba(26,37,51,0.05);
+    border: 1px solid rgba(26,37,51,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    transition: background 0.4s, border-color 0.4s;
+  }
+  .sc-icon { font-size: 26px; }
+  .sc-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 14px; transition: color 0.4s; line-height: 1.2; }
+  .sc-desc { font-size: 15px; line-height: 1.7; color: var(--steel); transition: color 0.4s; }
+  .sc-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); transition: color 0.4s; text-decoration: none; }
+  .sc-link::after { content: '→'; transition: transform 0.3s; }
+  .service-card:hover .sc-link::after { transform: translateX(4px); }
+
+  /* ─── ABOUT ──────────────────────────────────── */
+  #about { background: var(--navy); overflow: hidden; position: relative; }
+  #about::before {
+    content: ''; position: absolute; right: -200px; top: -200px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(197,160,89,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-left .section-title { color: var(--white); margin-bottom: 28px; }
+  .about-body { font-size: 16px; line-height: 1.85; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+  .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .pillar {
+    padding: 24px; border: 1px solid rgba(197,160,89,0.15);
+    border-radius: 8px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .pillar:hover { border-color: rgba(197,160,89,0.4); background: rgba(197,160,89,0.05); }
+  .pillar-icon { font-size: 22px; margin-bottom: 10px; }
+  .pillar-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+  .pillar-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .about-right { position: relative; }
+  .about-visual {
+    background: linear-gradient(135deg, #1e2e42 0%, #0d1620 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(197,160,89,0.15);
+    padding: 40px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+  }
+  .av-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 28px; }
+  .av-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .av-bar-wrap { flex: 1; height: 6px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
+  .av-bar { height: 100%; background: var(--gold-grad); border-radius: 3px; animation: bar-fill 2s 0.5s ease-out both; }
+  @keyframes bar-fill { from { width: 0% !important; } }
+  .av-label { font-size: 13px; color: rgba(255,255,255,0.55); min-width: 120px; }
+  .av-val { font-size: 13px; font-weight: 600; color: var(--gold); min-width: 36px; text-align: right; }
+  .about-cert-strip {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px;
+  }
+  .cert-badge {
+    padding: 8px 16px;
+    border: 1px solid rgba(197,160,89,0.3);
+    border-radius: 100px;
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    color: var(--gold); text-transform: uppercase;
+  }
+
+  /* ─── WHY CHOOSE US ──────────────────────────── */
+  #why { background: var(--ice); }
+  .why-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; margin-top: 60px; }
+  .why-left { position: sticky; top: 120px; }
+  .why-left .section-title { margin-bottom: 20px; }
+  .why-left p { font-size: 16px; line-height: 1.75; color: var(--steel); }
+  .why-items { display: flex; flex-direction: column; gap: 2px; }
+  .why-item {
+    padding: 32px 36px;
+    background: var(--white);
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: pointer;
+  }
+  .why-item:hover { border-left-color: var(--gold); background: #fdfaf5; }
+  .wi-head { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .wi-icon { font-size: 20px; }
+  .wi-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--navy); }
+  .wi-desc { font-size: 15px; line-height: 1.7; color: var(--steel); padding-left: 36px; }
+  .why-counter-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
+  .counter-box {
+    padding: 40px 32px; background: var(--navy); text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .counter-box::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 100%, rgba(197,160,89,0.1) 0%, transparent 70%); }
+  .counter-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .counter-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 8px; }
+
+  /* ─── EXCEPTIONAL ────────────────────────────── */
+  #exceptional {
+    background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+  #exceptional::after {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      rgba(197,160,89,0.02) 0px,
+      rgba(197,160,89,0.02) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+    pointer-events: none;
+  }
+  .exc-intro { max-width: 640px; margin-bottom: 64px; }
+  .exc-intro p { font-size: 18px; line-height: 1.75; color: rgba(255,255,255,0.6); margin-top: 20px; }
+  .exc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; position: relative; z-index: 1; }
+  .exc-card {
+    padding: 40px 32px;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(197,160,89,0.2);
+    transition: background 0.3s;
+  }
+  .exc-card:hover { background: rgba(197,160,89,0.07); }
+  .exc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 2px; color: var(--gold); margin-bottom: 16px;
+  }
+  .exc-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 14px; line-height: 1.2; }
+  .exc-desc { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.45); }
+  .exc-icon { font-size: 28px; margin-bottom: 20px; }
+
+  /* ─── GALLERY ────────────────────────────────── */
+  #gallery { background: var(--charcoal); padding: 120px 0; }
+  #gallery .max-w { padding: 0 5%; }
+  .gallery-head { margin-bottom: 48px; }
+  .gallery-head .section-title { color: var(--white); }
+  .gallery-head p { font-size: 16px; color: rgba(255,255,255,0.5); margin-top: 16px; max-width: 480px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 180px);
+    gap: 4px;
+  }
+  .gal-item {
+    position: relative; overflow: hidden; cursor: pointer;
+    background: var(--navy);
+  }
+  .gal-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gal-item:nth-child(4) { grid-column: span 2; grid-row: span 2; }
+  .gal-item:nth-child(7) { grid-column: span 3; }
+  .gal-item:nth-child(8) { grid-column: span 3; }
+  .gal-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; padding: 20px;
+    background: linear-gradient(135deg, var(--navy) 0%, #0d1620 100%);
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .gal-item:hover .gal-placeholder { transform: scale(1.05); }
+  .gal-placeholder-icon { font-size: 28px; opacity: 0.4; }
+  .gal-placeholder-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); text-align: center; }
+  .gal-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,37,51,0.85) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.4s;
+    display: flex; align-items: flex-end; padding: 20px;
+  }
+  .gal-item:hover .gal-overlay { opacity: 1; }
+  .gal-overlay-text { font-size: 13px; font-weight: 500; color: var(--white); letter-spacing: 0.5px; }
+  .gal-gold-line {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--gold-grad);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .gal-item:hover .gal-gold-line { transform: scaleX(1); }
+  .gallery-note { text-align: center; margin-top: 32px; font-size: 13px; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
+
+  /* ─── PROCESS / EXCEPTIONAL ─────────────────── */
+  .process-strip {
+    background: var(--ice);
+    padding: 80px 5%;
+    border-top: 1px solid rgba(26,37,51,0.08);
+  }
+  .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 48px; position: relative; }
+  .process-steps::before {
+    content: ''; position: absolute; top: 28px; left: 10%; right: 10%;
+    height: 1px; background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+    opacity: 0.3;
+  }
+  .ps-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 16px; }
+  .ps-circle {
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 1px solid rgba(197,160,89,0.4);
+    background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700;
+    color: var(--gold); margin-bottom: 20px; position: relative; z-index: 1;
+    box-shadow: 0 4px 16px rgba(197,160,89,0.15);
+    transition: background 0.3s, color 0.3s;
+  }
+  .ps-item:hover .ps-circle { background: var(--navy); color: var(--gold); }
+  .ps-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .ps-desc { font-size: 12px; line-height: 1.6; color: var(--steel); }
+
+  /* ─── CONTACT ────────────────────────────────── */
+  #contact { background: var(--navy); position: relative; overflow: hidden; }
+  #contact::before {
+    content: 'AASTHA'; position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 280px; font-weight: 700;
+    color: rgba(197,160,89,0.03);
+    right: -40px; bottom: -40px;
+    line-height: 1; pointer-events: none; white-space: nowrap;
+  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-left .section-title { color: var(--white); margin-bottom: 24px; }
+  .contact-left p { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.55); max-width: 400px; }
+  .contact-info { margin-top: 48px; display: flex; flex-direction: column; gap: 24px; }
+  .ci-item { display: flex; align-items: flex-start; gap: 16px; }
+  .ci-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(197,160,89,0.12); border: 1px solid rgba(197,160,89,0.2); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .ci-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; font-weight: 600; }
+  .ci-value { font-size: 15px; color: rgba(255,255,255,0.8); }
+  .contact-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(197,160,89,0.15);
+    border-radius: 16px; padding: 48px;
+    backdrop-filter: blur(10px);
+  }
+  .form-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 32px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .form-group label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(197,160,89,0.2);
+    border-radius: 6px;
+    color: var(--white); font-size: 14px; font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color 0.3s, background 0.3s;
+    appearance: none;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: rgba(197,160,89,0.06); }
+  .form-group select option { background: var(--navy); color: var(--white); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    width: 100%; padding: 16px;
+    background: var(--gold-grad);
+    color: var(--navy); font-size: 14px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+    border: none; border-radius: 6px; cursor: pointer;
+    box-shadow: 0 8px 32px rgba(197,160,89,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(197,160,89,0.5); }
+  .form-submit:active { transform: scale(0.99); }
+
+  /* ─── FOOTER ─────────────────────────────────── */
+  footer { background: #0d1620; padding: 60px 5% 32px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .footer-brand p { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.4); margin-top: 16px; max-width: 280px; }
+  .footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: 14px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.3s; }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .footer-tagline { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: rgba(197,160,89,0.5); font-style: italic; }
+
+  /* ─── SCROLL ANIMATIONS ──────────────────────── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── MOBILE ─────────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .exc-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .why-counter-row { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+    .gal-item:nth-child(1), .gal-item:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─────────────────────────────── -->
+<nav id="navbar">
+ <a href="#" class="nav-logo">
+  <img src="logo.jpg" alt="Aastha Projects Logo" style="height: 44px;
+  width: 44px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(197,160,89,0.3), 0 4px 16px rgba(197,160,89,0.25);">
+  <div class="nav-logo-text">
+    <span class="nav-logo-main">Aastha Projects</span>
+    <span class="nav-logo-sub">World-Class Bulkers</span>
+  </div>
+</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#gallery">Showroom</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Request a Quote</a>
+</nav>
+
+<!-- ─── HERO ───────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <canvas class="hero-particles" id="particles"></canvas>
+
+  <div class="hero-content max-w" style="max-width:1300px;">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>India's Premier Bulker Specialists</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="line"><span>Engineered</span></span>
+        <span class="line"><span>for the <em>World's</em></span></span>
+        <span class="line"><span>Heaviest Loads.</span></span>
+      </h1>
+      <p class="hero-sub">Manufacturing and repairing world-class bulk carriers with precision engineering, ISO-grade quality, and a legacy built on trust.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Request a Quote</a>
+        <a href="#services" class="btn-secondary">Our Services</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">500+</div>
+          <div class="hero-stat-label">Projects Delivered</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">20+</div>
+          <div class="hero-stat-label">Years of Excellence</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">98%</div>
+          <div class="hero-stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card hero-card-back2"></div>
+      <div class="hero-card hero-card-back1"></div>
+      <div class="hero-card hero-card-main">
+        <div class="hero-card-inner">
+          <div class="hero-card-shine"></div>
+          <div class="hc-tag"><div class="hc-icon"></div>Live Project</div>
+          <div class="hc-title">Bulk Carrier<br>MV Aastha VII</div>
+          <div class="hc-divider"></div>
+          <div class="hc-spec"><span class="hc-spec-label">Capacity</span><span class="hc-spec-value">25,000 DWT</span></div>
+          <div class="hc-spec"><span class="hc-spec-label">Hull Material</span><span class="hc-spec-value">Marine-Grade Steel</span></div>
+          <div class="hc-spec"><span class="hc-spec-label">Build Standard</span><span class="hc-spec-value">ISO 9001:2015</span></div>
+          <div class="hc-spec"><span class="hc-spec-label">Classification</span><span class="hc-spec-value">IRS Certified</span></div>
+          <div class="hc-spec"><span class="hc-spec-label">Delivery</span><span class="hc-spec-value">On Schedule</span></div>
+          <div class="hc-footer">
+            <div class="hc-status">In Production</div>
+            <div class="hc-number">07</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ─────────────────────────────── -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <!-- duplicated for seamless loop -->
+    <span class="marquee-item">Bulker Manufacturing <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Hull Repair & Restoration <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">ISO 9001:2015 Certified <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Dry Dock Services <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Steel Fabrication <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">World-Class Engineering <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Pan-India Operations <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Bulker Manufacturing <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Hull Repair & Restoration <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">ISO 9001:2015 Certified <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Dry Dock Services <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Steel Fabrication <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">World-Class Engineering <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Pan-India Operations <span class="marquee-sep">✦</span></span>
+  </div>
+</div>
+
+<!-- ─── SERVICES ─────────────────────────────── -->
+<section id="services">
+  <div class="max-w">
+    <div class="section-label reveal">Our Expertise</div>
+    <h2 class="section-title reveal reveal-delay-1">Services Built<br>for the Industry's Best.</h2>
+    <div class="services-grid" style="margin-top:60px;">
+      <div class="service-card reveal">
+        <div class="sc-num">01</div>
+        <div class="sc-icon-wrap"><div class="sc-icon">🚢</div></div>
+        <div class="sc-title">New Bulker Manufacturing</div>
+        <p class="sc-desc">From keel-laying to launch, we engineer and fabricate bulk carriers to exact specifications — built to outlast global industry benchmarks.</p>
+        <a href="#contact" class="sc-link">Get a Quote</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="sc-num">02</div>
+        <div class="sc-icon-wrap"><div class="sc-icon">🔧</div></div>
+        <div class="sc-title">Hull Repair & Restoration</div>
+        <p class="sc-desc">Comprehensive structural repairs, hull cleaning, and plate replacement using marine-grade steel. Minimal downtime, maximum structural integrity.</p>
+        <a href="#contact" class="sc-link">Get a Quote</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="sc-num">03</div>
+        <div class="sc-icon-wrap"><div class="sc-icon">⚙️</div></div>
+        <div class="sc-title">Mechanical Overhaul</div>
+        <p class="sc-desc">Full engine-room inspections, propulsion system overhauls, and mechanical refits to extend vessel life and performance.</p>
+        <a href="#contact" class="sc-link">Get a Quote</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="sc-num">04</div>
+        <div class="sc-icon-wrap"><div class="sc-icon">🏗️</div></div>
+        <div class="sc-title">Steel Fabrication</div>
+        <p class="sc-desc">Precision cutting, forming, and welding of structural steel components for both new builds and retrofit projects.</p>
+        <a href="#contact" class="sc-link">Get a Quote</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="sc-num">05</div>
+        <div class="sc-icon-wrap"><div class="sc-icon">🛡️</div></div>
+        <div class="sc-title">Coating & Corrosion Protection</div>
+        <p class="sc-desc">Advanced anti-fouling and anti-corrosion coating systems applied to international marine standards, safeguarding your asset for decades.</p>
+        <a href="#contact" class="sc-link">Get a Quote</a>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="sc-num">06</div>
+        <div class="sc-icon-wrap"><div class="sc-icon">📋</div></div>
+        <div class="sc-title">Inspection & Certification</div>
+        <p class="sc-desc">Third-party survey coordination, classification society liaison, and full documentation support to keep your vessel compliant worldwide.</p>
+        <a href="#contact" class="sc-link">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─────────────────────────────────── -->
+<section id="about">
+  <div class="max-w">
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="section-label" style="color:var(--gold)">Our Story</div>
+        <h2 class="section-title light reveal">Forging Excellence<br>Since Day One.</h2>
+        <p class="about-body reveal reveal-delay-1">Aastha Projects was founded on a singular belief: that Indian engineering can deliver world-class bulk carriers to global standards. Over two decades, that belief has been validated in steel, sweat, and success.</p>
+        <p class="about-body reveal reveal-delay-2">Our facility combines traditional craftsmanship with modern precision tooling — a combination that has made us the trusted partner of shipping companies, logistics operators, and industrial clients across India and beyond.</p>
+        <div class="about-pillars reveal reveal-delay-2">
+          <div class="pillar">
+            <div class="pillar-icon">🎯</div>
+            <div class="pillar-title">Zero-Compromise Quality</div>
+            <div class="pillar-desc">Every weld, every plate, every fitting is inspected to international marine standards.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">⏱️</div>
+            <div class="pillar-title">On-Time Delivery</div>
+            <div class="pillar-desc">We respect your schedule. 96% of projects delivered on or ahead of deadline.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🌍</div>
+            <div class="pillar-title">Global Standards</div>
+            <div class="pillar-desc">Certified under ISO 9001:2015 and compliant with IRS & international class rules.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🤝</div>
+            <div class="pillar-title">End-to-End Partnership</div>
+            <div class="pillar-desc">From design consultation to post-delivery support — we stay with you.</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right reveal reveal-delay-2">
+        <div class="about-visual">
+          <div class="av-title">Our Quality Metrics</div>
+          <div class="av-row">
+            <div class="av-label">Structural Integrity</div>
+            <div class="av-bar-wrap"><div class="av-bar" style="width:98%"></div></div>
+            <div class="av-val">98%</div>
+          </div>
+          <div class="av-row">
+            <div class="av-label">On-Time Delivery</div>
+            <div class="av-bar-wrap"><div class="av-bar" style="width:96%"></div></div>
+            <div class="av-val">96%</div>
+          </div>
+          <div class="av-row">
+            <div class="av-label">Client Retention</div>
+            <div class="av-bar-wrap"><div class="av-bar" style="width:92%"></div></div>
+            <div class="av-val">92%</div>
+          </div>
+          <div class="av-row">
+            <div class="av-label">Weld Quality Pass Rate</div>
+            <div class="av-bar-wrap"><div class="av-bar" style="width:99%"></div></div>
+            <div class="av-val">99%</div>
+          </div>
+          <div class="av-row">
+            <div class="av-label">Safety Record</div>
+            <div class="av-bar-wrap"><div class="av-bar" style="width:100%"></div></div>
+            <div class="av-val">100%</div>
+          </div>
+          <div class="about-cert-strip">
+            <div class="cert-badge">ISO 9001:2015</div>
+            <div class="cert-badge">IRS Certified</div>
+            <div class="cert-badge">Make in India</div>
+            <div class="cert-badge">MSME Registered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY CHOOSE US ─────────────────────────── -->
+<section id="why">
+  <div class="max-w">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="section-label reveal">Why Aastha</div>
+        <h2 class="section-title reveal reveal-delay-1">The Gold Standard<br>in Bulk Carriers.</h2>
+        <p class="reveal reveal-delay-2" style="font-size:16px;line-height:1.75;color:var(--steel);margin-top:16px;">We don't just build ships — we build confidence. Here's why India's top clients choose Aastha Projects over the competition.</p>
+      </div>
+      <div class="why-items">
+        <div class="why-item reveal">
+          <div class="wi-head"><span class="wi-icon">🏭</span><div class="wi-title">State-of-the-Art Facility</div></div>
+          <p class="wi-desc">Our fabrication yard is equipped with CNC cutting tables, automatic welding stations, and blast-and-paint chambers that rival international shipyards.</p>
+        </div>
+        <div class="why-item reveal reveal-delay-1">
+          <div class="wi-head"><span class="wi-icon">👷</span><div class="wi-title">Expert Engineering Team</div></div>
+          <p class="wi-desc">Our team of naval architects, structural engineers, and certified welders brings decades of combined experience to every project.</p>
+        </div>
+        <div class="why-item reveal reveal-delay-2">
+          <div class="wi-head"><span class="wi-icon">💰</span><div class="wi-title">Competitive Pricing</div></div>
+          <p class="wi-desc">World-class quality doesn't have to mean world-class prices. Our lean operations and domestic procurement give you maximum value.</p>
+        </div>
+        <div class="why-item reveal reveal-delay-3">
+          <div class="wi-head"><span class="wi-icon">🔍</span><div class="wi-title">Transparent Process</div></div>
+          <p class="wi-desc">Real-time project tracking, milestone reporting, and open-door site visits. You always know exactly where your vessel stands.</p>
+        </div>
+        <div class="why-item reveal">
+          <div class="wi-head"><span class="wi-icon">🌐</span><div class="wi-title">Pan-India Service Network</div></div>
+          <p class="wi-desc">Mobile repair teams and service depots across major ports and inland waterways ensure rapid response wherever you need us.</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-counter-row reveal" style="margin-top:60px;">
+      <div class="counter-box">
+        <div class="counter-num">500+</div>
+        <div class="counter-label">Vessels Completed</div>
+      </div>
+      <div class="counter-box">
+        <div class="counter-num">20+</div>
+        <div class="counter-label">Years of Operation</div>
+      </div>
+      <div class="counter-box">
+        <div class="counter-num">98%</div>
+        <div class="counter-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHAT MAKES US EXCEPTIONAL ────────────── -->
+<section id="exceptional">
+  <div class="max-w">
+    <div class="exc-intro">
+      <div class="section-label" style="color:var(--gold)">The Aastha Difference</div>
+      <h2 class="section-title light reveal">What Makes Us<br>Truly Exceptional.</h2>
+      <p class="reveal reveal-delay-1">Four pillars that separate Aastha Projects from every other fabricator in the country.</p>
+    </div>
+    <div class="exc-grid">
+      <div class="exc-card reveal">
+        <div class="exc-icon">⚡</div>
+        <div class="exc-num">01</div>
+        <div class="exc-title">Rapid Turnaround</div>
+        <p class="exc-desc">Our optimised production line cuts build time by up to 30% without compromising a single quality checkpoint.</p>
+      </div>
+      <div class="exc-card reveal reveal-delay-1">
+        <div class="exc-icon">🎖️</div>
+        <div class="exc-num">02</div>
+        <div class="exc-title">Gold-Standard Craftsmanship</div>
+        <p class="exc-desc">Every vessel carries a lifetime warranty on structural welds. We stand behind our work — literally and figuratively.</p>
+      </div>
+      <div class="exc-card reveal reveal-delay-2">
+        <div class="exc-icon">📐</div>
+        <div class="exc-num">03</div>
+        <div class="exc-title">Custom Engineering</div>
+        <p class="exc-desc">No two cargoes are identical. We design and build to your exact loading patterns, trade routes, and operational requirements.</p>
+      </div>
+      <div class="exc-card reveal reveal-delay-3">
+        <div class="exc-icon">🛥️</div>
+        <div class="exc-num">04</div>
+        <div class="exc-title">Full Lifecycle Support</div>
+        <p class="exc-desc">From first plate to final survey — drydock, repair, refit, recertification. One partner. One promise. For life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ───────────────────────────────── -->
+<div class="process-strip">
+  <div class="max-w">
+    <div class="section-label reveal">How We Work</div>
+    <h2 class="section-title reveal reveal-delay-1" style="font-size:clamp(28px,3.5vw,40px);margin-bottom:0;">Our 5-Step Precision Process</h2>
+    <div class="process-steps">
+      <div class="ps-item reveal">
+        <div class="ps-circle">1</div>
+        <div class="ps-title">Consultation</div>
+        <p class="ps-desc">We understand your operational requirements, trade routes, and cargo specifications.</p>
+      </div>
+      <div class="ps-item reveal reveal-delay-1">
+        <div class="ps-circle">2</div>
+        <div class="ps-title">Design & Engineering</div>
+        <p class="ps-desc">Naval architects create detailed drawings reviewed by classification society.</p>
+      </div>
+      <div class="ps-item reveal reveal-delay-2">
+        <div class="ps-circle">3</div>
+        <div class="ps-title">Fabrication</div>
+        <p class="ps-desc">Steel cutting, forming, and assembly under ISO-certified quality control.</p>
+      </div>
+      <div class="ps-item reveal reveal-delay-3">
+        <div class="ps-circle">4</div>
+        <div class="ps-title">Testing & Survey</div>
+        <p class="ps-desc">Sea trials, structural tests, and third-party survey for certification.</p>
+      </div>
+      <div class="ps-item reveal reveal-delay-4">
+        <div class="ps-circle">5</div>
+        <div class="ps-title">Delivery & Support</div>
+        <p class="ps-desc">Formal handover with full documentation and lifetime technical support.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── GALLERY ───────────────────────────────── -->
+<section id="gallery">
+  <div class="max-w">
+    <div class="gallery-head reveal">
+      <div class="section-label" style="color:var(--gold)">Our Work</div>
+      <h2 class="section-title">Showroom — Built With Pride.</h2>
+      <p>A glimpse into our fabrication yard, vessels, and craftsmanship. Replace placeholders with your 30 client images.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item reveal">
+        <div class="gal-placeholder"><div class="gal-placeholder-icon">🚢</div><div class="gal-placeholder-label">Add Image 01<br>New Build — Full View</div></div>
+        <div class="gal-overlay"><div class="gal-overlay-text">New Build — Full View</div></div>
+        <div class="gal-gold-line"></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-1">
+        <div class="gal-placeholder"><div class="gal-placeholder-icon">🔧</div><div class="gal-placeholder-label">Add Image 02<br>Hull Repair Work</div></div>
+        <div class="gal-overlay"><div class="gal-overlay-text">Hull Repair Work</div></div>
+        <div class="gal-gold-line"></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-2">
+        <div class="gal-placeholder"><div class="gal-placeholder-icon">⚙️</div><div class="gal-placeholder-label">Add Image 03<br>Engine Room Overhaul</div></div>
+        <div class="gal-overlay"><div class="gal-overlay-text">Engine Room Overhaul</div></div>
+        <div class="gal-gold-line"></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-1">
+        <div class="gal-placeholder"><div class="gal-placeholder-icon">🏗️</div><div class="gal-placeholder-label">Add Image 04<br>Steel Fabrication</div></div>
+        <div class="gal-overlay"><div class="gal-overlay-text">Steel Fabrication</div></div>
+        <div class="gal-gold-line"></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-2">
+        <div class="gal-placeholder"><div class="gal-placeholder-icon">🛡️</div><div class="gal-placeholder-label">Add Image 05<br>Coating Application</div></div>
+        <div class="gal-overlay"><div class="gal-overlay-text">Coating Application</div></div>
+        <div class="gal-gold-line"></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-3">
+        <div class="gal-placeholder"><div class="gal-placeholder-icon">🌊</div><div class="gal-placeholder-label">Add Image 06<br>Sea Trial</div></div>
+        <div class="gal-overlay"><div class="gal-overlay-text">Sea Trial</div></div>
+        <div class="gal-gold-line"></div>
+      </div>
+      <div class="gal-item reveal">
+        <div class="gal-placeholder"><div class="gal-placeholder-icon">📸</div><div class="gal-placeholder-label">Add Image 07 — Showroom Photo</div></div>
+        <div class="gal-overlay"><div class="gal-overlay-text">Showroom Photo</div></div>
+        <div class="gal-gold-line"></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-1">
+        <div class="gal-placeholder"><div class="gal-placeholder-icon">📸</div><div class="gal-placeholder-label">Add Image 08 — Showroom Photo</div></div>
+        <div class="gal-overlay"><div class="gal-overlay-text">Showroom Photo</div></div>
+        <div class="gal-gold-line"></div>
+      </div>
+    </div>
+    <p class="gallery-note">▸ 30 showroom images ready to be inserted — replace placeholder divs with &lt;img&gt; tags</p>
+  </div>
+</section>
+
+<!-- ─── CONTACT ───────────────────────────────── -->
+<section id="contact">
+  <div class="max-w">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="section-label" style="color:var(--gold)">Get In Touch</div>
+        <h2 class="section-title light reveal">Let's Build<br>Something Great.</h2>
+        <p class="reveal reveal-delay-1">Whether you need a new vessel, urgent repairs, or a long-term maintenance partner — we're ready to talk. Get a competitive quote within 24 hours.</p>
+        <div class="contact-info">
+          <div class="ci-item reveal reveal-delay-2">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">Location</div>
+              <div class="ci-value">India — Multiple Yards Nationwide</div>
+            </div>
+          </div>
+          <div class="ci-item reveal reveal-delay-2">
+            <div class="ci-icon">📞</div>
+            <div>
+              <div class="ci-label">Phone</div>
+              <div class="ci-value">+91 XXXXX XXXXX</div>
+            </div>
+          </div>
+          <div class="ci-item reveal reveal-delay-3">
+            <div class="ci-icon">✉️</div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">info@aasthaprojects.in</div>
+            </div>
+          </div>
+          <div class="ci-item reveal reveal-delay-3">
+            <div class="ci-icon">🕐</div>
+            <div>
+              <div class="ci-label">Response Time</div>
+              <div class="ci-value">Within 24 Hours — Guaranteed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-1">
+        <div class="form-title">Request a Free Quote</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" placeholder="Company name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@company.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service Required</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>New Bulker Manufacturing</option>
+            <option>Hull Repair & Restoration</option>
+            <option>Mechanical Overhaul</option>
+            <option>Steel Fabrication</option>
+            <option>Coating & Corrosion Protection</option>
+            <option>Inspection & Certification</option>
+            <option>Other / Multiple Services</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Project Details</label>
+          <textarea placeholder="Describe your vessel, requirements, timeline, and any specific challenges..."></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit()">Send Quote Request →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+  <img src="logo.jpg" alt="Aastha Projects Logo" style="height: 44px;
+  width: 44px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(197,160,89,0.3), 0 4px 16px rgba(197,160,89,0.25);">
+  <div class="nav-logo-text">
+    <span class="nav-logo-main">Aastha Projects</span>
+    <span class="nav-logo-sub">World-Class Bulkers</span>
+  </div>
+</a>
+
+        <p>India's most trusted bulker manufacturer and repair specialist — delivering world-class vessels with precision, pride, and purpose.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="#services">New Manufacturing</a></li>
+          <li><a href="#services">Hull Repair</a></li>
+          <li><a href="#services">Mechanical Overhaul</a></li>
+          <li><a href="#services">Steel Fabrication</a></li>
+          <li><a href="#services">Coating & Protection</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#why">Why Aastha</a></li>
+          <li><a href="#gallery">Our Work</a></li>
+          <li><a href="#contact">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Certifications</div>
+        <ul>
+          <li><a href="#">ISO 9001:2015</a></li>
+          <li><a href="#">IRS Classification</a></li>
+          <li><a href="#">MSME Registered</a></li>
+          <li><a href="#">Make in India</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Aastha Projects. All rights reserved by WebX.</div>
+      <div class="footer-tagline">Engineered in India. Built for the World.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── NAVBAR SCROLL ─────────────────────────
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ─── REVEAL ON SCROLL ──────────────────────
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ─── PARTICLE CANVAS ──────────────────────
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * 1920, y: Math.random() * 900,
+      vx: (Math.random() - 0.5) * 0.3, vy: -Math.random() * 0.4 - 0.1,
+      size: Math.random() * 1.5 + 0.5, opacity: Math.random() * 0.4 + 0.1
+    });
+  }
+  function animParticles() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W; }
+      if (p.x < -5) p.x = W + 5;
+      if (p.x > W + 5) p.x = -5;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(197, 160, 89, ${p.opacity})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(animParticles);
+  }
+  animParticles();
+
+  // ─── COUNTER ANIMATION ────────────────────
+  const counters = document.querySelectorAll('.counter-num');
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const raw = el.textContent.trim();
+      const num = parseFloat(raw);
+      const suffix = raw.replace(String(num), '');
+      let start = 0; const dur = 1800; const t0 = Date.now();
+      function tick() {
+        const progress = Math.min((Date.now() - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const val = eased * num;
+        el.textContent = (Number.isInteger(num) ? Math.round(val) : val.toFixed(0)) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      tick();
+      counterObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObs.observe(c));
+
+  // ─── FORM SUBMIT ──────────────────────────
+  function handleSubmit() {
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = '✓ Message Sent — We\'ll reply within 24 hours';
+    btn.style.background = 'linear-gradient(135deg, #5DCCB0 0%, #3AA88B 100%)';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Send Quote Request →';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 5000);
+  }
+</script>
+</body>
+</html>
